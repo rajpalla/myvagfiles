@@ -4,6 +4,7 @@ sudo apt-get update
 echo mysql-server-5.7 mysql-server/root_password password pass | debconf-set-selections
 echo mysql-server-5.7 mysql-server/root_password_again password pass | debconf-set-selections
 sudo apt-get install lamp-server^ -y
+#(nagiso is not complete product so we need additional packages to config and make it ready for monitoring)
 sudo apt-get install -y build-essential libgd2-xpm-dev openssl libssl-dev xinetd apache2-utils zip unzip
 touch /var/www/html/phpinfo.php
 echo -e "<?php\nphpinfo();\n?>" > /var/www/html/phpinfo.php
@@ -18,7 +19,7 @@ sudo wget -q https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.2.
 sudo mkdir /home/ubuntu/nagios-4.2.4
 sudo tar xzvf nagios-4.2.4.tar.gz -C /home/ubuntu/nagios-4.2.4 --strip-components=1
 cd /home/ubuntu/nagios-4.2.4
-./configure --with-nagios-group=nagios --with-command-group=nagcmd
+./configure --with-nagios-group=nagios --with-command-group=nagcmd --with-mail=/usr/sbin/sendmail
 make all
 sudo make install
 sudo make install-init
