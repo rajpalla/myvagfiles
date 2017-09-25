@@ -33,7 +33,7 @@ sshpass -p "ubuntu" scp -o 'StrictHostKeyChecking no' ubuntu@192.168.33.44:/etc/
 sudo wget -q https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.2.0-amd64.deb
 sudo dpkg -i filebeat-5.2.0-amd64.deb
 sudo echo '
-filebeat:prospectors:
+filebeat.prospectors:
 - input_type: syslog
   paths:
     - /var/log/auth.log
